@@ -1,0 +1,63 @@
+:root {
+  --background: hsl(235, 46%, 20%);
+  --font-color: white;
+}
+
+.user-report {
+  width: 256px;
+  height: 506px;
+  background-color: var(--background);
+  border-radius: 20px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.user-info {
+  width: 226px;
+  height: 322px;
+  background-color: hsl(246, 80%, 60%);
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  align-items: right;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-top: 32px;
+}
+
+.profile {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+
+h1 {
+  font-family: "Rubik";
+  margin-top: 15px;
+  font-size: 34px;
+  font-weight: 300px;
+}
+
+h3 {
+  font-family: "Rubik";
+  margin-top: 42px;
+}
+
+ul {
+  text-align: left;
+  list-style-type: none;
+  margin-top: 26px;
+}
+
+li {
+  margin-top: 20px;
+}
+
+a {
+  font-family: "Rubik";
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+}
