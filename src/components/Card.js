@@ -29,12 +29,7 @@ const Card = ({
         <h2>{capitalizeFirstLetter(title)}</h2>
         <h1>{currentHours}hrs</h1>
         <h3>Last Week - {lastWeekHours}hrs</h3>
-        <img
-          src={IconMore}
-          alt="more"
-          className="more-icon"
-          onClick={handleDelete}
-        />
+        <img src={IconMore} alt="more" className="more-icon" />
       </div>
     </div>
   );

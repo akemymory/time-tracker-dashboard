@@ -30,18 +30,19 @@
   height: 85px;
   border-radius: 50%;
   border: 5px solid white;
+  margin-bottom: 42px;
 }
 
-h1 {
+.user {
   font-family: "Rubik";
-  margin-top: 15px;
+  margin-top: 10px;
   font-size: 34px;
   font-weight: 300px;
+  color: white;
 }
 
-h3 {
+.report {
   font-family: "Rubik";
-  margin-top: 42px;
 }
 
 ul {

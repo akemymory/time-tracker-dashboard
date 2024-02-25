@@ -6,7 +6,6 @@ const UserReport = ({ userName }) => {
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
-    // Aqui você pode realizar as operações necessárias para calcular os dados com base no filtro selecionado
   };
 
   return (
@@ -17,8 +16,8 @@ const UserReport = ({ userName }) => {
           src={require("../images/image-jeremy.png")}
           alt="User"
         />
-        <h3>Report for {userName}</h3>
-        <h1>{userName}</h1>
+        <h3 className="report">Report for</h3>
+        <h1 className="user">Jeremy Robson</h1>
       </div>
       <div className="filters">
         <ul>

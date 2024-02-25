@@ -21,53 +21,55 @@ const categoryInfo = {
   work: { color: "hsl(15, 100%, 70%)", icon: workIcon },
 };
 
-function StaticScreen() {
+const userName = "Jeremy Robson";
+
+function App() {
   return (
     <div className="App">
       <div className="dashboard">
-        <div className="report">
-          <UserReport />
+        <div className="user-report">
+          <UserReport name={userName} />
         </div>
         <div className="log">
           <Card
             key="exercise"
             title="Exercise"
-            currentHours={10} // Exemplo de horas estáticas para demonstração
+            currentHours={10}
             color={categoryInfo.exercise.color}
             icon={categoryInfo.exercise.icon}
           />
           <Card
             key="play"
             title="Play"
-            currentHours={8} // Exemplo de horas estáticas para demonstração
+            currentHours={8}
             color={categoryInfo.play.color}
             icon={categoryInfo.play.icon}
           />
           <Card
             key="self-care"
             title="Self-care"
-            currentHours={6} // Exemplo de horas estáticas para demonstração
+            currentHours={6}
             color={categoryInfo["self-care"].color}
             icon={categoryInfo["self-care"].icon}
           />
           <Card
             key="social"
             title="Social"
-            currentHours={4} // Exemplo de horas estáticas para demonstração
+            currentHours={4}
             color={categoryInfo.social.color}
             icon={categoryInfo.social.icon}
           />
           <Card
             key="study"
             title="Study"
-            currentHours={8} // Exemplo de horas estáticas para demonstração
+            currentHours={8}
             color={categoryInfo.study.color}
             icon={categoryInfo.study.icon}
           />
           <Card
             key="work"
             title="Work"
-            currentHours={10} // Exemplo de horas estáticas para demonstração
+            currentHours={10}
             color={categoryInfo.work.color}
             icon={categoryInfo.work.icon}
           />
@@ -77,4 +79,4 @@ function StaticScreen() {
   );
 }
 
-export default StaticScreen;
+export default App;
