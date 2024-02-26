@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./components/Card";
 import UserReport from "./components/UserReport";
 import exerciseIcon from "./images/icon-exercise.svg";
@@ -13,66 +13,156 @@ const categoryInfo = {
   exercise: {
     color: "hsl(145, 58%, 55%)",
     icon: exerciseIcon,
+    defaultHours: {
+      daily: 2,
+      weekly: 10,
+      monthly: 40,
+    },
+    yesterdayHours: 8,
+    lastWeekHours: 35,
+    lastMonthHours: 90,
   },
-  play: { color: "hsl(195, 74%, 62%)", icon: playIcon },
-  "self-care": { color: "hsl(43, 84%, 65%)", icon: selfCareIcon },
-  social: { color: "hsl(264, 64%, 52%)", icon: socialIcon },
-  study: { color: "hsl(348, 100%, 68%)", icon: studyIcon },
-  work: { color: "hsl(15, 100%, 70%)", icon: workIcon },
+  play: {
+    color: "hsl(195, 74%, 62%)",
+    icon: playIcon,
+    defaultHours: {
+      daily: 3,
+      weekly: 21,
+      monthly: 44,
+    },
+    yesterdayHours: 6,
+    lastWeekHours: 30,
+    lastMonthHours: 80,
+  },
+  "self-care": {
+    color: "hsl(43, 84%, 65%)",
+    icon: selfCareIcon,
+    defaultHours: {
+      daily: 1,
+      weekly: 7,
+      monthly: 28,
+    },
+    yesterdayHours: 4,
+    lastWeekHours: 25,
+    lastMonthHours: 70,
+  },
+  social: {
+    color: "hsl(264, 64%, 52%)",
+    icon: socialIcon,
+    defaultHours: {
+      daily: 10,
+      weekly: 35,
+      monthly: 90,
+    },
+    yesterdayHours: 2,
+    lastWeekHours: 20,
+    lastMonthHours: 60,
+  },
+  study: {
+    color: "hsl(348, 100%, 68%)",
+    icon: studyIcon,
+    defaultHours: {
+      daily: 5,
+      weekly: 35,
+      monthly: 140,
+    },
+    yesterdayHours: 6,
+    lastWeekHours: 35,
+    lastMonthHours: 100,
+  },
+  work: {
+    color: "hsl(15, 100%, 70%)",
+    icon: workIcon,
+    defaultHours: {
+      daily: 8,
+      weekly: 40,
+      monthly: 12,
+    },
+    yesterdayHours: 8,
+    lastWeekHours: 40,
+    lastMonthHours: 120,
+  },
 };
 
 const userName = "Jeremy Robson";
 
 function App() {
+  const [activeFilter, setActiveFilter] = useState("daily");
+  const [totalHours, setTotalHours] = useState({
+    daily: { today: 0, yesterday: 0 },
+    weekly: { currentWeek: 0, lastWeek: 0 },
+    monthly: { currentMonth: 0, lastMonth: 0 },
+  });
+
+  const updateTotalHours = (filter) => {
+    setActiveFilter(filter);
+    if (filter === "daily") {
+      setTotalHours({
+        daily: { today: 10, yesterday: 8 },
+        weekly: { ...totalHours.weekly },
+        monthly: { ...totalHours.monthly },
+      });
+    } else if (filter === "weekly") {
+      const weeklyTotals = {};
+      Object.keys(categoryInfo).forEach((key) => {
+        weeklyTotals[key] = categoryInfo[key].lastWeekHours;
+      });
+      setTotalHours({
+        daily: { ...totalHours.daily },
+        weekly: { ...weeklyTotals },
+        monthly: { ...totalHours.monthly },
+      });
+    } else if (filter === "monthly") {
+      const monthlyTotals = {};
+      Object.keys(categoryInfo).forEach((key) => {
+        monthlyTotals[key] = categoryInfo[key].lastMonthHours;
+      });
+      setTotalHours({
+        daily: { ...totalHours.daily },
+        weekly: { ...totalHours.weekly },
+        monthly: { ...monthlyTotals },
+      });
+    }
+  };
+
   return (
     <div className="App">
       <div className="dashboard">
         <div className="user-report">
-          <UserReport name={userName} />
+          <UserReport
+            name={userName}
+            activeFilter={activeFilter}
+            onFilterChange={updateTotalHours}
+          />
         </div>
         <div className="log">
-          <Card
-            key="exercise"
-            title="Exercise"
-            currentHours={10}
-            color={categoryInfo.exercise.color}
-            icon={categoryInfo.exercise.icon}
-          />
-          <Card
-            key="play"
-            title="Play"
-            currentHours={8}
-            color={categoryInfo.play.color}
-            icon={categoryInfo.play.icon}
-          />
-          <Card
-            key="self-care"
-            title="Self-care"
-            currentHours={6}
-            color={categoryInfo["self-care"].color}
-            icon={categoryInfo["self-care"].icon}
-          />
-          <Card
-            key="social"
-            title="Social"
-            currentHours={4}
-            color={categoryInfo.social.color}
-            icon={categoryInfo.social.icon}
-          />
-          <Card
-            key="study"
-            title="Study"
-            currentHours={8}
-            color={categoryInfo.study.color}
-            icon={categoryInfo.study.icon}
-          />
-          <Card
-            key="work"
-            title="Work"
-            currentHours={10}
-            color={categoryInfo.work.color}
-            icon={categoryInfo.work.icon}
-          />
+          {Object.keys(categoryInfo).map((key) => (
+            <Card
+              key={key}
+              title={key.charAt(0).toUpperCase() + key.slice(1)}
+              currentHours={categoryInfo[key].defaultHours[activeFilter]}
+              dailyTotalText="Yesterday"
+              dailyTotal={
+                activeFilter === "daily" ? categoryInfo[key].yesterdayHours : 0
+              }
+              yesterdayTotal={
+                activeFilter === "daily" ? categoryInfo[key].yesterdayHours : 0
+              }
+              lastWeekTotalText="Last Week"
+              lastWeekTotal={
+                activeFilter === "weekly" ? categoryInfo[key].lastWeekHours : 0
+              }
+              monthlyTotalText="Last Month"
+              monthlyTotal={
+                activeFilter === "monthly"
+                  ? categoryInfo[key].lastMonthHours
+                  : 0
+              }
+              color={categoryInfo[key].color}
+              icon={categoryInfo[key].icon}
+              activeFilter={activeFilter}
+            />
+          ))}
         </div>
       </div>
     </div>

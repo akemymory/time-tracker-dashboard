@@ -26,6 +26,16 @@
   bottom: 0;
 }
 
+.stats:hover {
+  width: 256px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: hsl(235, 45%, 35%);
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+
 h1 {
   font-family: "Rubik";
   font-weight: 300;

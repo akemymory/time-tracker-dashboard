@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./UserReport.css";
 
-const UserReport = ({ userName }) => {
+const UserReport = ({ userName, onFilterChange }) => {
   const [selectedFilter, setSelectedFilter] = useState("daily");
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
+    onFilterChange(filter); // Calls the onFilterChange function passed as a prop
   };
 
   return (
@@ -22,17 +23,33 @@ const UserReport = ({ userName }) => {
       <div className="filters">
         <ul>
           <li>
-            <a href="#" onClick={() => handleFilterChange("daily")}>
+            <a
+              className={`filter ${selectedFilter === "daily" ? "active" : ""}`}
+              href="javascript:void(0)"
+              onClick={() => handleFilterChange("daily")}
+            >
               Daily
             </a>
           </li>
           <li>
-            <a href="#" onClick={() => handleFilterChange("weekly")}>
+            <a
+              className={`filter ${
+                selectedFilter === "weekly" ? "active" : ""
+              }`}
+              href="javascript:void(0)"
+              onClick={() => handleFilterChange("weekly")}
+            >
               Weekly
             </a>
           </li>
           <li>
-            <a href="#" onClick={() => handleFilterChange("monthly")}>
+            <a
+              className={`filter ${
+                selectedFilter === "monthly" ? "active" : ""
+              }`}
+              href="javascript:void(0)"
+              onClick={() => handleFilterChange("monthly")}
+            >
               Monthly
             </a>
           </li>

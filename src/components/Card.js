@@ -1,21 +1,20 @@
-// Card.js
 import React from "react";
 import "./Card.css";
 import IconMore from "../images/icon-more.png";
 
 const Card = ({
-  id,
   title,
   currentHours,
-  lastWeekHours,
-  onDelete,
+  dailyTotalText,
+  dailyTotal,
+  yesterdayTotal,
+  lastWeekTotalText,
+  lastWeekTotal,
+  monthlyTotalText,
+  monthlyTotal,
   color,
   icon,
 }) => {
-  const handleDelete = () => {
-    onDelete(id); // Chama a função de exclusão passada como prop
-  };
-
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -28,7 +27,15 @@ const Card = ({
       <div className="stats">
         <h2>{capitalizeFirstLetter(title)}</h2>
         <h1>{currentHours}hrs</h1>
-        <h3>Last Week - {lastWeekHours}hrs</h3>
+        <h3>
+          {yesterdayTotal ? `${dailyTotalText} - ${yesterdayTotal}hrs` : null}
+        </h3>
+        <h3>
+          {lastWeekTotal ? `${lastWeekTotalText} - ${lastWeekTotal}hrs` : null}
+        </h3>
+        <h3>
+          {monthlyTotal ? `${monthlyTotalText} - ${monthlyTotal}hrs` : null}
+        </h3>
         <img src={IconMore} alt="more" className="more-icon" />
       </div>
     </div>
