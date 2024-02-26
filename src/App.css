@@ -57,6 +57,7 @@ h3 {
     height: auto;
     background-color: hsl(226, 43%, 10%);
     padding: 20px;
+    margin: 0 auto;
   }
 
   .log {
@@ -67,7 +68,6 @@ h3 {
   }
 
   .user-report {
-    width: 100%;
     margin: 0;
     margin-top: 0;
     margin-bottom: 20px;

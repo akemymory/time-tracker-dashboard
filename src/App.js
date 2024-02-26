@@ -135,8 +135,6 @@ function App() {
             onFilterChange={updateTotalHours}
           />
         </div>
-
-        {/* Cards Component */}
         <div className="log">
           {Object.keys(categoryInfo).map((key) => (
             <Card

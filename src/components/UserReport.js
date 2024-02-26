@@ -17,8 +17,10 @@ const UserReport = ({ userName, onFilterChange }) => {
           src={require("../images/image-jeremy.png")}
           alt="User"
         />
-        <h3 className="report">Report for</h3>
-        <h1 className="user">Jeremy Robson</h1>
+        <div className="name">
+          <h3 className="report">Report for</h3>
+          <h1 className="user">Jeremy Robson</h1>
+        </div>
       </div>
       <div className="filters">
         <ul>

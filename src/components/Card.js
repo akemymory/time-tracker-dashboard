@@ -26,16 +26,20 @@ const Card = ({
       </div>
       <div className="stats">
         <h2>{capitalizeFirstLetter(title)}</h2>
-        <h1>{currentHours}hrs</h1>
-        <h3>
-          {yesterdayTotal ? `${dailyTotalText} - ${yesterdayTotal}hrs` : null}
-        </h3>
-        <h3>
-          {lastWeekTotal ? `${lastWeekTotalText} - ${lastWeekTotal}hrs` : null}
-        </h3>
-        <h3>
-          {monthlyTotal ? `${monthlyTotalText} - ${monthlyTotal}hrs` : null}
-        </h3>
+        <div className="stats-number">
+          <h1>{currentHours}hrs</h1>
+          <h3>
+            {yesterdayTotal ? `${dailyTotalText} - ${yesterdayTotal}hrs` : null}
+          </h3>
+          <h3>
+            {lastWeekTotal
+              ? `${lastWeekTotalText} - ${lastWeekTotal}hrs`
+              : null}
+          </h3>
+          <h3>
+            {monthlyTotal ? `${monthlyTotalText} - ${monthlyTotal}hrs` : null}
+          </h3>
+        </div>
         <img src={IconMore} alt="more" className="more-icon" />
       </div>
     </div>
